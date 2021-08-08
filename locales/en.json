@@ -1,0 +1,29 @@
+{
+  "welcome": "Hello, this is in English!",
+  "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "first": "First",
+      "last": "Last"
+    },
+  "pokemon": {
+    "evolvesFrom": "evolves from",
+    "evolvesFromNone": "Does not evolve from another Pokemon",
+    "length": "Length",
+    "weight": "Weight",
+    "description": "Pokémon Description:",
+    "ability": "Pokémon Abilities:",
+    "attack": "Attack",
+    "defense": "Defense",
+    "speed": "Speed"
+  },
+  "searchBar": {
+    "textSearchPlaceHolder": "Enter pokemon name or...",
+    "textSearchLabel": "Name or id:",
+    "typeLabel": "Type:",
+    "abilityLabel": "Ability",
+    "generationLabel": "Generation: ",
+    "search": "search"
+  }
+
+}
