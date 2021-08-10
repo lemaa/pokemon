@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "@types/jest": "^26.0.24",
     "core-js": "^3.15.1",
     "node-sass": "5.0.0",
     "nuxt": "^2.15.7",
