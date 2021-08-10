@@ -4,7 +4,7 @@
     <SearchBar @search-pokemon="searchPokemon" />
     <div id="pokemonCards" class="mt-4">
       <div v-if="is_search">
-        <div v-if="pokemonFiltredList.length >0" class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+        <div v-if="pokemonFiltredList.length >0" class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-7">
           <PokemonCard v-for="pokemon in pokemonFiltredList" :key="pokemon.id" :pokemon="pokemon" />
         </div>
         <div v-else class="relative h-32">
@@ -13,7 +13,7 @@
           </div>
         </div>
       </div>
-      <div v-else class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+      <div v-else class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-7">
         <PokemonCard v-for="pokemon in pokemonList" :key="pokemon.id" :pokemon="pokemon" />
       </div>
       <div v-if="pokemonList.length > 0 && pokemonList.length < maxPokemon && !is_search" class="text-center mb-3">
