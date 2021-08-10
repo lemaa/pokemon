@@ -1,10 +1,10 @@
 <template>
   <div :class="[' pokemon-card-container card m-2 border-4 border-yellow-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200', pokemon.pokemonTheme]">
     <div class="m-3">
-      <h2 v-if="pokemon.evolvesFrom" class="text-xs  mb-1 text-center text-white font-mono">
+      <h2 v-if="pokemon.evolvesFrom" class="text-tiny  mb-1 text-center text-white font-mono">
         <span class="capitalize">{{ pokemon.name }} </span>{{ $t('pokemon.evolvesFrom') }} <span class="capitalize">{{ pokemon.evolvesFrom.name }}</span>
       </h2>
-      <h2 v-else class="text-xs  mb-1 text-center text-white font-mono">
+      <h2 v-else class="text-tiny  mb-1 text-center text-white font-mono">
         <span class="capitalize">{{ pokemon.name }} </span>{{ $t('pokemon.evolvesFromNone') }}
       </h2>
       <h2 class="text-lg mb-1 flex text-white font-mono font-extrabold justify-between capitalize ">
