@@ -4,7 +4,9 @@
       "previous": "Précédent",
       "next": "Suivant",
       "first": "Premier",
-      "last": "Dernier"
+      "last": "Dernier",
+      "loadMore": "Charger plus"
+
     },
    "pokemon":{
     "evolvesFrom": "évolue de",

@@ -4,7 +4,8 @@
       "previous": "Previous",
       "next": "Next",
       "first": "First",
-      "last": "Last"
+      "last": "Last",
+      "loadMore": "Load more"
     },
   "pokemon": {
     "evolvesFrom": "evolves from",

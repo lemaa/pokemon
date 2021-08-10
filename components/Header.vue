@@ -1,23 +1,21 @@
 <template>
-  <nav id="header" class="flex items-center justify-between flex-wrap bg-teal p-3 shadow-sm border-b-2 bg-red-500 border-yellow-500">
-    <div class="flex items-center flex-no-shrink text-white mr-6">
-      <img class="logo-pokeball w-12" src="~/assets/images/pokeball.png">
-      <span class="text-logo-pokeball font-semibold  text-5xl px-2.5">{{ title }}</span>
-    </div>
-    <div class="block sm:hidden">
-      <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
-        <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
-      </button>
+  <nav id="header" class="flex items-center justify-between flex-wrap bg-teal shadow-sm border-b-2 bg-red-500 border-yellow-500">
+    <div class="flex items-center flex-no-shrink text-white mx-5">
+      <img class="logo-pokeball w-10 " src="~/assets/images/pokeball.png">
+      <span class="text-logo-pokeball font-semibold  text-2xl p-2.5">{{ title }}</span>
     </div>
     <div class="w-full block flex-grow sm:flex sm:items-center sm:justify-end sm:w-auto">
-      <div>
-        <a
-          v-for="locale in $i18n.locales"
-          :key="locale.code"
-          href="#"
-          class="inline-block text-sm px-4 py-2 leading-none border rounded border-white hover:border-transparent text-white hover:text-teal hover:bg-white mt-4 lg:mt-0"
-          @click="$i18n.setLocale(locale.code)"
-        >{{ locale.name }}</a>
+      <div class="flex items-center justify-end w-full px-5 mt-3">
+        <label for="language" class="flex items-center cursor-pointer">
+          <div class="relative">
+            <input id="language" v-model="checked" type="checkbox" class="sr-only" @change="changeLanguage()">
+            <div class="block bg-red-800 w-12 h-6 rounded-full" />
+            <div class="dot absolute left-1 top-1 bg-yellow-500 w-5 h-4 rounded-full transition" />
+          </div>
+          <div class="ml-3 text-white text-sm font-bold uppercase ">
+            {{ language }}
+          </div>
+        </label>
       </div>
     </div>
   </nav>
@@ -31,7 +29,20 @@ export default Vue.extend({
       type: String,
       required: true
     }
+  },
+  data () {
+    return {
+      language: 'fr',
+      checked: false
+    }
+  },
+  methods: {
+    changeLanguage () {
+      this.language = this.checked ? 'en' : 'fr'
+      this.$i18n.setLocale(this.language)
+    }
   }
+
 })
 </script>
 
@@ -43,4 +54,8 @@ nav#header {
   }
 }
 
+input:checked ~ .dot {
+  transform: translateX(100%);
+  background-color: #f4e906;
+}
 </style>
