@@ -9,8 +9,9 @@
       </h2>
       <h2 class="text-lg mb-1 flex text-white font-mono font-extrabold justify-between capitalize ">
         <span>{{ pokemon.name }}</span>
-        <span class="animate-pulse">
+        <span class="text-sm py-1 animate-pulse">
           {{ pokemon.stats[0].baseStat }}HP
+          {{ pokemon.xp }}XP
         </span>
       </h2>
       <div class="font-mono relative">
