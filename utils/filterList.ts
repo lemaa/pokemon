@@ -41,6 +41,6 @@ export default (array: Array<Pokemon>, params: {searchText:string, type: string,
       }
     })
   } catch (error) {
-    console.log(error)
+    console.warn(error)
   }
 }

@@ -18,6 +18,6 @@ export default async (offset: number = 0, perpage: number = 25, language: string
     })
     return await Promise.all(promises)
   } catch (e) {
-    console.log(e)
+    console.warn(e)
   }
 }
