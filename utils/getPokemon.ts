@@ -1,8 +1,9 @@
 
 import axios from 'axios'
-export default async (idPokemon: number, language: string = 'en') => {
+export default async (idPokemon: number, language:string = 'fr') => {
   const pokemonURL = `${process.env.pokemonApi}pokemon/${idPokemon}/`
   const pokemonSpeciesURL = `${process.env.pokemonApi}pokemon-species/${idPokemon}/`
+
   try {
     const pokemonGeneral = await axios.get(pokemonURL)
     let pokemonSpecies
@@ -14,10 +15,11 @@ export default async (idPokemon: number, language: string = 'en') => {
       stats,
       abilities,
       height,
-      weight
+      weight,
+      // eslint-disable-next-line camelcase
+      base_experience
     } = pokemonGeneral.data
-    const pokemonTheme = types[types.length - 1].type.name
-
+    const pokemonTheme = types[0].type.name
     const formattedAbilities = abilities.map((ability: any) => ability.ability.name.split('-').join(' '))
     const formattedStats = stats.map((stat: any) => {
       return {
@@ -29,6 +31,7 @@ export default async (idPokemon: number, language: string = 'en') => {
     let evolvesFrom
     let species = 'unknown Pokémon'
     let flavorTextEntries = ''
+    let generation = ''
 
     if (idPokemon <= 10000) {
       pokemonSpecies = await axios.get(pokemonSpeciesURL)
@@ -36,6 +39,7 @@ export default async (idPokemon: number, language: string = 'en') => {
       flavorTextEntries = pokemonSpecies && pokemonSpecies.data.flavor_text_entries
       const evolvesFromSpecies = pokemonSpecies && pokemonSpecies.data.evolves_from_species
       const genera = pokemonSpecies && pokemonSpecies.data.genera
+      generation = pokemonSpecies && pokemonSpecies.data.generation.name
 
       if (evolvesFromSpecies) {
         evolvesFrom = {
@@ -53,6 +57,9 @@ export default async (idPokemon: number, language: string = 'en') => {
     return {
       id,
       name,
+      generation,
+      xp: base_experience,
+      types: types.map((e: any) => e.type.name),
       description: getFlavorText(flavorTextEntries, language),
       sprites,
       stats: formattedStats,
@@ -74,7 +81,7 @@ export default async (idPokemon: number, language: string = 'en') => {
   }
 }
 
-function getFlavorText (flavors: any, language: string = 'en') {
+function getFlavorText (flavors: any, language: string = 'fr') {
   if (flavors === '') {
     return 'no description found for this pokemon'
   }

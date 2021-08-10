@@ -59,9 +59,9 @@ export default {
         name: 'français'
       }
     ],
-    defaultLocale: 'en',
+    defaultLocale: 'fr',
     vueI18n: {
-      fallbackLocale: 'en',
+      fallbackLocale: 'fr',
       messages: {
         en: require('./locales/en.json'),
         fr: require('./locales/fr.json')
