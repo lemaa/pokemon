@@ -10,10 +10,10 @@ export default async (offset: number = 0, perpage: number = 25, language: string
     if (!pokemonData) {
       return error({ statusCode: 404, message: 'No pokemon found!' })
     }
-    pokemonData.forEach((element: any) => {
+    pokemonData.forEach((element: {url: string, name: string}) => {
       const urlArray = element.url.split('/')
       const indexLocation = urlArray.length - 2
-      const idPokemon = urlArray[indexLocation]
+      const idPokemon = parseInt(urlArray[indexLocation])
       promises.push(getPokemon(idPokemon, language))
     })
     return await Promise.all(promises)

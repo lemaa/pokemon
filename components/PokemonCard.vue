@@ -2,19 +2,19 @@
   <div :class="[' pokemon-card-container card m-2 border-4 border-yellow-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200', pokemon.pokemonTheme]">
     <div class="m-3">
       <h2 v-if="pokemon.evolvesFrom" class="text-xs  mb-1 text-center text-white font-mono">
-        {{ pokemon.name }} {{ $t('pokemon.evolvesFrom') }} {{ pokemon.evolvesFrom.name }}
+        <span class="capitalize">{{ pokemon.name }} </span>{{ $t('pokemon.evolvesFrom') }} <span class="capitalize">{{ pokemon.evolvesFrom.name }}</span>
       </h2>
       <h2 v-else class="text-xs  mb-1 text-center text-white font-mono">
-        {{ pokemon.name }} {{ $t('pokemon.evolvesFromNone') }}
+        <span class="capitalize">{{ pokemon.name }} </span>{{ $t('pokemon.evolvesFromNone') }}
       </h2>
       <h2 class="text-lg mb-1 flex text-white font-mono font-extrabold justify-between capitalize ">
         <span>{{ pokemon.name }}</span>
         <span class="animate-pulse">
-          {{ pokemon.stats[0].base_stat }}HP
+          {{ pokemon.stats[0].baseStat }}HP
         </span>
       </h2>
       <div class="font-mono relative">
-        <div :class="['card-avatar h-28 bg-gray-50', pokemon.pokemonTheme]" :style="{ backgroundImage: getBgImageSyle(pokemon.sprites.front_default)}" />
+        <div :class="['card-avatar h-28 bg-gray-50', pokemon.pokemonTheme]" :style="{ backgroundImage: getBgImageSyle(pokemon.sprites)}" />
       </div>
       <div class="font-mono text-tiny text-center mt-2 bg-yellow-400">
         {{ pokemon.species }}. {{ $t('pokemon.length') }}: {{ pokemon.height }}m, {{ $t('pokemon.weight') }}: {{ pokemon.weight }}Kg
@@ -39,19 +39,19 @@
           <div>
             <span>{{ $t('pokemon.attack') }}</span>
             <div class="text-center text-lg">
-              {{ pokemon.stats[1].base_stat }}
+              {{ pokemon.stats[1].baseStat }}
             </div>
           </div>
           <div>
             <span>{{ $t('pokemon.defense') }}</span>
             <div class="text-center text-lg">
-              {{ pokemon.stats[2].base_stat }}
+              {{ pokemon.stats[2].baseStat }}
             </div>
           </div>
           <div>
             <span>{{ $t('pokemon.speed') }}</span>
             <div class="text-center text-lg">
-              {{ pokemon.stats[5].base_stat }}
+              {{ pokemon.stats[5].baseStat }}
             </div>
           </div>
         </div>
@@ -62,11 +62,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import Pokemon from '~/types/pokemon'
 
 export default Vue.extend({
   props: {
     pokemon: {
-      type: Object,
+      type: Object as () => Pokemon,
       required: true
     }
   },
