@@ -24,7 +24,7 @@ export default async (idPokemon: number, language:string = 'fr') => {
     const formattedStats = stats.map((stat: any) => {
       return {
         name: stat.stat.name.split('-').join(' '),
-        base_stat: stat.base_stat
+        baseStat: stat.base_stat
       }
     })
 
@@ -61,7 +61,7 @@ export default async (idPokemon: number, language:string = 'fr') => {
       xp: base_experience,
       types: types.map((e: any) => e.type.name),
       description: getFlavorText(flavorTextEntries, language),
-      sprites,
+      sprites: sprites.front_default,
       stats: formattedStats,
       height: height / 10,
       weight: weight / 10,

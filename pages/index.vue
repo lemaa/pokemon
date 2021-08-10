@@ -3,10 +3,17 @@
   <div class="">
     <SearchBar @search-pokemon="searchPokemon" />
     <div id="pokemonCards" class="mt-4">
-      <div v-if="is_search" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
-        <PokemonCard v-for="pokemon in pokemonFiltredList" :key="pokemon.id" :pokemon="pokemon" />
+      <div v-if="is_search">
+        <div v-if="pokemonFiltredList.length >0" class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          <PokemonCard v-for="pokemon in pokemonFiltredList" :key="pokemon.id" :pokemon="pokemon" />
+        </div>
+        <div v-else class="relative h-32">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <img class="logo-pokeball w-10 mr-5 " src="~/assets/images/anxiety.png"> {{ $t('pokemon.pokemonNotFound') }}
+          </div>
+        </div>
       </div>
-      <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
+      <div v-else class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         <PokemonCard v-for="pokemon in pokemonList" :key="pokemon.id" :pokemon="pokemon" />
       </div>
       <div v-if="pokemonList.length > 0 && pokemonList.length < maxPokemon && !is_search" class="text-center mb-3">
@@ -25,6 +32,7 @@ import SearchBar from '~/components/SearchBar.vue'
 import PokemonCard from '~/components/PokemonCard.vue'
 import getPokemonList from '~/utils/getPokemonList'
 import filterList from '~/utils/filterList'
+import Pokemon from '~/types/pokemon'
 export default Vue.extend({
   components: {
     SearchBar,
@@ -38,9 +46,9 @@ export default Vue.extend({
   },
   data () {
     return {
-      pokemonList: [] as Array<any>,
-      pokemonFullList: [] as Array<any>,
-      pokemonFiltredList: [] as Array<any>,
+      pokemonList: [] as Array<Pokemon>,
+      pokemonFullList: [] as Array<Pokemon>,
+      pokemonFiltredList: [] as Array<Pokemon> | undefined,
       maxPokemon: 800,
       is_search: false,
       loading: false
@@ -53,7 +61,7 @@ export default Vue.extend({
       this.pokemonList = [...this.pokemonList, ...morePokemons]
       this.loading = false
     },
-    searchPokemon (e: any) {
+    searchPokemon (e: {searchText: string, type: string, xp: string}) {
       if (e.searchText === '' && e.type === '' && e.xp === '') {
         this.is_search = false
         return

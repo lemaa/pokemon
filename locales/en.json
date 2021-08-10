@@ -16,7 +16,8 @@
     "ability": "Pokémon Abilities:",
     "attack": "Attack",
     "defense": "Defense",
-    "speed": "Speed"
+    "speed": "Speed",
+    "pokemonNotFound": "No pokemon found"
   },
   "searchBar": {
     "textSearchPlaceHolder": "Enter pokemon name or...",
