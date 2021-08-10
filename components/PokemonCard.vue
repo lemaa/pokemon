@@ -7,9 +7,11 @@
       <h2 v-else class="text-xs  mb-1 text-center text-white font-mono">
         {{ pokemon.name }} {{ $t('pokemon.evolvesFromNone') }}
       </h2>
-      <h2 class="text-lg mb-1 text-white font-mono font-extrabold">
-        {{ pokemon.name }}
-        <span class="text-sm text-white inline px-2 float-right animate-pulse">{{ pokemon.stats[0].base_stat }} HP</span>
+      <h2 class="text-lg mb-1 flex text-white font-mono font-extrabold justify-between capitalize ">
+        <span>{{ pokemon.name }}</span>
+        <span class="animate-pulse">
+          {{ pokemon.stats[0].base_stat }}HP
+        </span>
       </h2>
       <div class="font-mono relative">
         <div :class="['card-avatar h-28 bg-gray-50', pokemon.pokemonTheme]" :style="{ backgroundImage: getBgImageSyle(pokemon.sprites.front_default)}" />
